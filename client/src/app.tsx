@@ -7,6 +7,7 @@ import About from './pages/aboutPage';
 import Profile from './pages/profilePage';
 import SessionDetail from './pages/sessionDetailsPage';
 
+// defines structure of an object called Player
 interface Player {
   id: string;
   email: string;
@@ -19,6 +20,8 @@ interface Player {
   createdAt: string;
 }
 
+// player is either logged in or not, state is changed upon login
+// Browser Router listens for changes in url and sends users to respective pages based on this
 export default function App() {
   const [player, setPlayer] = useState<Player | null>(null);
 

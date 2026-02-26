@@ -20,14 +20,19 @@ export default function SessionDetail() {
   const [session, setSession] = useState<Session | null>(null);
   const [error, setError] = useState('');
 
+  // defines and calls function load, which loads page with info based on sessionId
   useEffect(() => {
-    fetch(`/api/session/${sessionId}`)
-      .then(r => {
+    const load = async () => {
+      try {
+        const r = await fetch(`/api/session/${sessionId}`);
         if (!r.ok) throw new Error('Not found');
-        return r.json();
-      })
-      .then(setSession)
-      .catch(() => setError('Session not found'));
+        const data = await r.json();
+        setSession(data);
+      } catch {
+        setError('Session not found');
+      }
+    };
+    load();
   }, [sessionId]);
 
   if (error) return <p style={{ color: '#DC2626' }}>{error}</p>;

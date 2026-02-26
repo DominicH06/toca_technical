@@ -13,10 +13,12 @@ interface Player {
   createdAt: string;
 }
 
+// allows player state to be updated
 interface Props {
   onSignIn: (player: Player) => void;
 }
 
+// handles changes in state of emails and errors
 export default function SignIn({ onSignIn }: Props) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -55,20 +57,32 @@ export default function SignIn({ onSignIn }: Props) {
         background: 'var(--color-card)',
         border: '1px solid var(--color-border)',
         borderRadius: '12px',
-        padding: '2rem',
+        padding: '2.5rem',
         width: '100%',
-        maxWidth: '100%',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.06)'
+        maxWidth: '700px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
       }}>
         <img
           src="https://cdn.prod.website-files.com/60c7be61132e3a9edf0a3315/64df867654b968a39c399a71_Toca-Logo-Navy.svg"
           alt="TOCA Logo"
-          style={{ height: '36px', marginBottom: '0.5rem' }}
+          style={{ height: '36px', marginBottom: '1rem' }}
         />
-        <p style={{ color: 'var(--color-muted)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>Player Portal</p>
+        <h2 style={{ color: 'var(--color-text)', fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.25rem' }}>
+          Welcome back
+        </h2>
+        <p style={{ color: 'var(--color-muted)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+          Sign in to access your player portal
+        </p>
 
         <form onSubmit={handleSubmit}>
-          <label style={{ display: 'block', color: 'var(--color-muted)', fontSize: '0.8rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <label style={{
+            display: 'block',
+            color: 'var(--color-muted)',
+            fontSize: '0.8rem',
+            marginBottom: '0.5rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em'
+          }}>
             Email Address
           </label>
           <input
@@ -85,10 +99,15 @@ export default function SignIn({ onSignIn }: Props) {
               borderRadius: '6px',
               color: 'var(--color-text)',
               fontSize: '1rem',
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              boxSizing: 'border-box' as const
             }}
           />
-          {error && <p style={{ color: '#DC2626', fontSize: '0.85rem', marginBottom: '1rem' }}>{error}</p>}
+          {error && (
+            <p style={{ color: '#DC2626', fontSize: '0.85rem', marginBottom: '1rem' }}>
+              {error}
+            </p>
+          )}
           <button
             type="submit"
             disabled={loading}
@@ -100,7 +119,8 @@ export default function SignIn({ onSignIn }: Props) {
               border: 'none',
               borderRadius: '6px',
               fontSize: '1rem',
-              fontWeight: '600'
+              fontWeight: '600',
+              cursor: loading ? 'not-allowed' : 'pointer'
             }}
           >
             {loading ? 'Loading...' : 'Enter Portal'}

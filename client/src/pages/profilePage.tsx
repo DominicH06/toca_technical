@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Player {
   id: string;
@@ -17,7 +18,13 @@ interface Props {
 }
 
 export default function Profile({ player }: Props) {
-  if (!player) return <p>Not logged in.</p>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!player) navigate('/');
+  }, [player]);
+
+  if (!player) return null;
 
   return (
     <div style={{ width: '100%' }}>

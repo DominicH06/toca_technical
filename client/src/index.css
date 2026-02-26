@@ -1,9 +1,14 @@
+/*This is the styling for the project*/
+
+
+/*every element on the page follows these*/
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/*these vars can be used anywhere on the page*/
 :root {
   --color-bg: #F5F7FA;
   --color-card: #FFFFFF;

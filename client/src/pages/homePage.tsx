@@ -35,12 +35,23 @@ export default function Home({ player }: Props) {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   useEffect(() => {
-    if (!player) return;
-    fetch(`/api/sessions/${player.id}`).then(r => r.json()).then(setSessions);
-    fetch(`/api/appointments/${player.id}`).then(r => r.json()).then(setAppointments);
+    const load = async () => {
+      if (!player) {
+        navigate('/');
+        return;
+      }
+      const sessionsRes = await fetch(`/api/sessions/${player.id}`);
+      const sessionsData = await sessionsRes.json();
+      setSessions(sessionsData);
+
+      const appointmentsRes = await fetch(`/api/appointments/${player.id}`);
+      const appointmentsData = await appointmentsRes.json();
+      setAppointments(appointmentsData);
+    };
+    load();
   }, [player]);
 
-  if (!player) return <p>Not logged in.</p>;
+  if (!player) return null;
 
   return (
     <div style={{ width: '100%' }}>
