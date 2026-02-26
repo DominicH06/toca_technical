@@ -1,0 +1,36 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #F5F7FA;
+  --color-card: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-text: #0F172A;
+  --color-muted: #64748B;
+  --color-primary: #003087;
+  --color-primary-light: rgba(0, 48, 135, 0.08);
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: sans-serif;
+}
+
+button {
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+input {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
