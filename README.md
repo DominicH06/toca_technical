@@ -21,6 +21,7 @@ This is a web application for TOCA players to log in and view their training his
 1. Clone the repository
     ```
     git clone <your-repo-url>
+    or download ZIP from GitHub
     ```
 
 2. Install frontend dependencies
@@ -31,6 +32,7 @@ This is a web application for TOCA players to log in and view their training his
 
 3. Install backend dependencies
     ```
+   cd ..
    cd server
    npm install
     ```
